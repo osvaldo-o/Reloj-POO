@@ -38,7 +38,7 @@ public class Reloj {
             cont++;
             if(segundo >= 60){
                 mostrarHora();
-                segundo = 0;
+                segundo = reset();
                 incrementarMinutos();
             }
             if(cont==tiempo){
@@ -52,7 +52,7 @@ public class Reloj {
         if(stop == true){
             minuto++;
             if(minuto >= 60){ 
-                minuto = 0; 
+                minuto = reset(); 
                 incrementarHoras();
             }
         } 
@@ -61,8 +61,12 @@ public class Reloj {
     public void incrementarHoras(){
         hora++;
         if(hora == 24){
-            hora = 0;
+            hora = reset();
         }
+    }
+    
+    public int reset(){
+        return 0;
     }
     
 }
