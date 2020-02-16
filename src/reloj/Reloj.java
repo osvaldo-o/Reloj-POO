@@ -5,8 +5,7 @@ public class Reloj {
     private int hora;
     private int minuto;
     private int segundo;
-    private boolean stop = true;
-    private int tiempo;
+    private int tiempo; // para detener el reloj dependiendo cuantos segundos quiero que avance
     
     public Reloj(){ 
     }
@@ -41,55 +40,38 @@ public class Reloj {
     public void setSegundo(int segundo) {
         this.segundo = segundo;
     }
-    
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+   
     public void mostrarHora(){
         System.out.println(hora+":"+minuto+":"+segundo);
     }
     
     public void incrementarSegundos(){
-        int cont = 0;
-        while(stop==true){
-            if(segundo!=0){
-                mostrarHora();
-            }
-            try {
+        try {
 
-                Thread.sleep(1000);
+        Thread.sleep(1000);
 
-            } catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
 
-                Thread.currentThread().interrupt();
+        Thread.currentThread().interrupt();
 
-            }
-            segundo++;
-            cont++;
-            if(segundo >= 60){
-                mostrarHora();
-                segundo = reset();
-                incrementarMinutos();
-            }
-            if(cont==tiempo){
-                stop = false;
-            }
         }
-      
+        segundo++;
     }
     
     public void incrementarMinutos(){
-        if(stop == true){
-            minuto++;
-            if(minuto >= 60){ 
-                minuto = reset(); 
-                incrementarHoras();
-            }
-        } 
+        minuto++;      
     }
     
     public void incrementarHoras(){
         hora++;
-        if(hora == 24){
-            hora = reset();
-        }
     }
     
     public int reset(){
